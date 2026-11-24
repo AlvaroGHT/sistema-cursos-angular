@@ -1,17 +1,44 @@
 
 <div class="contenedor-registro">
 
-  <h2>Registrar inscripción</h2>
+  <!-- ENCABEZADO -->
+  <div class="encabezado-registro">
 
-  <p class="descripcion">
-    Completa los datos del estudiante para realizar su inscripción.
-  </p>
+    <div class="icono-registro">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="9" cy="8" r="4"/>
+        <path d="M3 20v-1a6 6 0 0 1 12 0v1"/>
+        <path d="M19 8v6"/>
+        <path d="M16 11h6"/>
+      </svg>
+    </div>
 
+    <div class="titulo-registro">
+      <span class="etiqueta-registro">GESTIÓN DE ESTUDIANTES</span>
+      <h2>Registrar inscripción</h2>
+      <p class="descripcion">
+        Completa los datos del estudiante para realizar su inscripción.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="separador-registro"></div>
+
+  <!-- FORMULARIO -->
   <form (ngSubmit)="registrar()">
+
+    <div class="titulo-seccion">
+      <span class="numero-seccion">01</span>
+      <div>
+        <h3>Información del estudiante</h3>
+        <p>Introduce los datos personales correspondientes.</p>
+      </div>
+    </div>
 
     <div class="grupo-formulario">
 
-      <label for="nombre">Nombre:</label>
+      <label for="nombre">Nombre completo</label>
 
       <input
         type="text"
@@ -19,14 +46,17 @@
         name="nombre"
         [(ngModel)]="nombre"
         placeholder="Ingresa el nombre"
+        autocomplete="given-name"
         required
       >
+
+      <small>Escribe el nombre del estudiante.</small>
 
     </div>
 
     <div class="grupo-formulario">
 
-      <label for="apellido">Apellido:</label>
+      <label for="apellido">Apellido</label>
 
       <input
         type="text"
@@ -34,14 +64,17 @@
         name="apellido"
         [(ngModel)]="apellido"
         placeholder="Ingresa el apellido"
+        autocomplete="family-name"
         required
       >
+
+      <small>Introduce el apellido correspondiente.</small>
 
     </div>
 
     <div class="grupo-formulario">
 
-      <label for="correo">Correo electrónico:</label>
+      <label for="correo">Correo electrónico</label>
 
       <input
         type="email"
@@ -49,14 +82,27 @@
         name="correo"
         [(ngModel)]="correo"
         placeholder="ejemplo@correo.com"
+        autocomplete="email"
         required
       >
 
+      <small>Utiliza un correo electrónico válido.</small>
+
+    </div>
+
+    <div class="separador-formulario"></div>
+
+    <div class="titulo-seccion">
+      <span class="numero-seccion">02</span>
+      <div>
+        <h3>Selección del curso</h3>
+        <p>Selecciona el curso al que deseas inscribirte.</p>
+      </div>
     </div>
 
     <div class="grupo-formulario">
 
-      <label for="cursoId">Seleccionar curso:</label>
+      <label for="cursoId">Seleccionar curso</label>
 
       <select
         id="cursoId"
@@ -65,7 +111,9 @@
         required
       >
 
-        <option [ngValue]="0" disabled>Selecciona un curso</option>
+        <option [ngValue]="0" disabled>
+          Selecciona un curso
+        </option>
 
         @for (curso of cursos; track curso.id) {
           <option [ngValue]="curso.id">
@@ -75,15 +123,33 @@
 
       </select>
 
+      <small>Elige el curso correspondiente a tu inscripción.</small>
+
     </div>
 
-    <button type="submit">
-      Registrar inscripción
-    </button>
+    <!-- BOTÓN -->
+    <div class="acciones-registro">
 
+      <button type="submit" class="btn-registrar">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 5v14"/>
+          <path d="M5 12h14"/>
+        </svg>
+        Registrar inscripción
+      </button>
+
+      <p class="nota-registro">
+        Verifica los datos antes de registrar la inscripción.
+      </p>
+
+    </div>
+
+    <!-- MENSAJES -->
     @if (mensaje) {
-      <p class="mensaje" [class.exito]="tipoMensaje === 'exito'"
-         [class.error]="tipoMensaje === 'error'">
+      <p
+        class="mensaje"
+        [class.exito]="tipoMensaje === 'exito'"
+        [class.error]="tipoMensaje === 'error'">
         {{ mensaje }}
       </p>
     }

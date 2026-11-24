@@ -1,11 +1,26 @@
 
 <div class="contenedor-historial">
 
-  <h2>Historial de inscripciones</h2>
+  <!-- ENCABEZADO -->
+  <div class="encabezado-historial">
 
-  <p class="descripcion">
-    Consulta todas las inscripciones registradas en el sistema.
-  </p>
+    <div class="icono-historial">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/>
+        <path d="M3 3v5h5"/>
+        <path d="M12 7v5l3 2"/>
+      </svg>
+    </div>
+
+    <div>
+      <span class="etiqueta-historial">GESTIÓN ACADÉMICA</span>
+      <h2>Historial de inscripciones</h2>
+      <p class="descripcion">
+        Consulta y revisa todas las inscripciones registradas en el sistema.
+      </p>
+    </div>
+
+  </div>
 
   @if (mensajeError) {
 
@@ -15,48 +30,87 @@
 
   } @else if (inscripciones.length > 0) {
 
-    <div class="filtros-historial">
+    <!-- PANEL DE FILTROS -->
+    <section class="filtros-historial">
 
-      <div class="grupo-filtro">
+      <div class="titulo-filtros">
+        <div>
+          <h3>Consultar registros</h3>
+          <p>Filtra las inscripciones según su estado.</p>
+        </div>
 
-        <label for="filtroEstado">
-          Filtrar por estado:
-        </label>
+        <span class="etiqueta-filtro">FILTROS</span>
+      </div>
 
-        <select
-          id="filtroEstado"
-          class="form-select"
-          [value]="filtroEstado"
-          (change)="filtroEstado = $any($event.target).value"
-        >
-          <option value="todas">Todas las inscripciones</option>
-          <option value="activa">Activas</option>
-          <option value="retirada">Retiradas</option>
-        </select>
+      <div class="contenido-filtros">
+
+        <div class="grupo-filtro">
+
+          <label for="filtroEstado">Estado de inscripción</label>
+
+          <select
+            id="filtroEstado"
+            class="form-select"
+            [value]="filtroEstado"
+            (change)="filtroEstado = $any($event.target).value"
+          >
+            <option value="todas">Todas las inscripciones</option>
+            <option value="activa">Activas</option>
+            <option value="retirada">Retiradas</option>
+          </select>
+
+        </div>
+
+        <div class="contador-inscripciones">
+          <div class="contador-icono">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 6h13M8 12h13M8 18h13"/>
+              <path d="M3 6h.01M3 12h.01M3 18h.01"/>
+            </svg>
+          </div>
+
+          <div>
+            <span>Inscripciones encontradas</span>
+            <strong>{{ inscripcionesFiltradas.length }}</strong>
+          </div>
+        </div>
 
       </div>
 
-      <div class="contador-inscripciones">
-        Inscripciones encontradas:
-        <strong>{{ inscripcionesFiltradas.length }}</strong>
-      </div>
+    </section>
 
-    </div>
-
+    <!-- LISTADO -->
     @if (inscripcionesFiltradas.length > 0) {
+
+      <div class="encabezado-resultados">
+        <div>
+          <h3>Registros de estudiantes</h3>
+          <p>Información detallada de cada inscripción.</p>
+        </div>
+      </div>
 
       <div class="lista-inscripciones">
 
         @for (inscripcion of inscripcionesFiltradas; track inscripcion.id) {
 
-          <div class="tarjeta-inscripcion">
+          <article class="tarjeta-inscripcion">
 
             <div class="encabezado-tarjeta">
 
-              <h3>
-                {{ inscripcion.estudiante.nombre | titlecase }}
-                {{ inscripcion.estudiante.apellido | titlecase }}
-              </h3>
+              <div class="identidad-estudiante">
+                <div class="avatar-estudiante">
+                  {{ inscripcion.estudiante.nombre.charAt(0) | titlecase }}
+                </div>
+
+                <div>
+                  <span class="identificador">INSCRIPCIÓN #{{ inscripcion.id }}</span>
+
+                  <h3>
+                    {{ inscripcion.estudiante.nombre | titlecase }}
+                    {{ inscripcion.estudiante.apellido | titlecase }}
+                  </h3>
+                </div>
+              </div>
 
               <span
                 class="estado"
@@ -65,39 +119,73 @@
                   'retirada': inscripcion.estado === 'retirada'
                 }"
               >
+                <span class="punto-estado"></span>
                 {{ inscripcion.estado | titlecase }}
               </span>
 
             </div>
 
-            <p>
-              <strong>ID de inscripción:</strong>
-              {{ inscripcion.id }}
-            </p>
+            <div class="separador-tarjeta"></div>
 
-            <p>
-              <strong>Correo electrónico:</strong>
-              {{ inscripcion.estudiante.correo }}
-            </p>
+            <div class="informacion-inscripcion">
 
-            <p>
-              <strong>Curso:</strong>
-              {{ obtenerNombreCurso(inscripcion.cursoId) }}
-            </p>
+              <div class="dato-inscripcion">
+                <span class="icono-dato">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="m3 7 9 6 9-6"/>
+                  </svg>
+                </span>
 
-            <p>
-              <strong>Fecha de inscripción:</strong>
-              {{ inscripcion.fecha | date:'dd/MM/yyyy, h:mm a' }}
-            </p>
+                <div>
+                  <strong>Correo electrónico</strong>
+                  <span>{{ inscripcion.estudiante.correo }}</span>
+                </div>
+              </div>
+
+              <div class="dato-inscripcion">
+                <span class="icono-dato">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 4h16v16H4z"/>
+                    <path d="M8 8h8M8 12h8M8 16h5"/>
+                  </svg>
+                </span>
+
+                <div>
+                  <strong>Curso inscrito</strong>
+                  <span>{{ obtenerNombreCurso(inscripcion.cursoId) }}</span>
+                </div>
+              </div>
+
+              <div class="dato-inscripcion">
+                <span class="icono-dato">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="16" rx="2"/>
+                    <path d="M16 3v4M8 3v4M3 10h18"/>
+                  </svg>
+                </span>
+
+                <div>
+                  <strong>Fecha de inscripción</strong>
+                  <span>{{ inscripcion.fecha | date:'dd/MM/yyyy, h:mm a' }}</span>
+                </div>
+              </div>
+
+            </div>
 
             <a
               [routerLink]="['/detalle', inscripcion.id]"
               class="btn-detalle"
             >
               Consultar detalle
+
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m13 6 6 6-6 6"/>
+              </svg>
             </a>
 
-          </div>
+          </article>
 
         }
 
@@ -107,11 +195,15 @@
 
       <div class="sin-inscripciones">
 
-        <h3>No hay resultados</h3>
+        <div class="icono-vacio">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m16 16 4 4"/>
+          </svg>
+        </div>
 
-        <p>
-          No existen inscripciones con el estado seleccionado.
-        </p>
+        <h3>No hay resultados</h3>
+        <p>No existen inscripciones con el estado seleccionado.</p>
 
       </div>
 
@@ -120,6 +212,13 @@
   } @else {
 
     <div class="sin-inscripciones">
+
+      <div class="icono-vacio">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 4h16v16H4z"/>
+          <path d="M8 8h8M8 12h8M8 16h5"/>
+        </svg>
+      </div>
 
       <h3>No hay inscripciones registradas</h3>
 

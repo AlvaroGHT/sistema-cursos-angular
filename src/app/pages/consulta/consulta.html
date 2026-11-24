@@ -1,118 +1,260 @@
 
-<div class="contenedor-cursos container-fluid">
+<div class="contenedor-cursos">
 
-  <h2>Consultar cursos</h2>
+  <!-- ENCABEZADO -->
+  <section class="encabezado-cursos">
 
-  <p class="descripcion">
-    Explora los cursos disponibles y consulta sus detalles.
-  </p>
+    <div class="icono-catalogo">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z" />
+        <path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20" />
+        <path d="M8 7h8" />
+        <path d="M8 10h6" />
+      </svg>
+    </div>
+
+    <div class="texto-encabezado">
+      <span class="etiqueta-seccion">CATÁLOGO EDUCATIVO</span>
+      <h2>Explora nuestros cursos</h2>
+      <p class="descripcion">
+        Encuentra el curso que se adapte a tus intereses y consulta sus detalles.
+      </p>
+    </div>
+
+  </section>
 
   @if (mensajeError) {
 
-    <div class="alert alert-danger">
-      {{ mensajeError }}
+    <div class="estado-vacio estado-error">
+      <div class="icono-estado">!</div>
+      <h3>No se pudieron cargar los cursos</h3>
+      <p>{{ mensajeError }}</p>
     </div>
 
   } @else if (cursos.length === 0) {
 
-    <div class="alert alert-info">
-      No hay cursos disponibles.
+    <div class="estado-vacio">
+      <div class="icono-estado">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z" />
+          <path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20" />
+        </svg>
+      </div>
+      <h3>No hay cursos disponibles</h3>
+      <p>En este momento no existen cursos para mostrar.</p>
     </div>
 
   } @else {
 
-    <!-- FILTROS -->
-    <div class="row g-3 mb-4">
+    <!-- PANEL DE BÚSQUEDA -->
+    <section class="panel-filtros">
 
-      <div class="col-md-6">
+      <div class="titulo-filtros">
+        <div>
+          <h3>Encuentra tu curso</h3>
+          <p>Utiliza los filtros para encontrar lo que buscas.</p>
+        </div>
 
-        <label for="buscarCurso" class="form-label">
-          Buscar curso
-        </label>
+        <span class="etiqueta-filtros">BÚSQUEDA</span>
+      </div>
 
-        <input
-          id="buscarCurso"
-          type="text"
-          class="form-control"
-          placeholder="Escribe el nombre o descripción..."
-          [value]="textoBusqueda"
-          (input)="textoBusqueda = $any($event.target).value"
-        >
+      <div class="row g-3">
+
+        <div class="col-md-6">
+
+          <label for="buscarCurso" class="form-label">
+            Buscar por nombre o descripción
+          </label>
+
+          <div class="campo-busqueda">
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m16 16 4 4" />
+            </svg>
+
+            <input
+              id="buscarCurso"
+              type="text"
+              class="form-control"
+              placeholder="Ej. programación básica..."
+              [value]="textoBusqueda"
+              (input)="textoBusqueda = $any($event.target).value">
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+          <label for="filtroCategoria" class="form-label">
+            Categoría del curso
+          </label>
+
+          <select
+            id="filtroCategoria"
+            class="form-select"
+            [value]="categoriaSeleccionada"
+            (change)="categoriaSeleccionada = $any($event.target).value">
+
+            <option value="">Todas las categorías</option>
+
+            @for (categoria of categorias; track categoria) {
+              <option [value]="categoria">
+                {{ categoria }}
+              </option>
+            }
+
+          </select>
+
+        </div>
 
       </div>
 
-      <div class="col-md-6">
+    </section>
 
-        <label for="filtroCategoria" class="form-label">
-          Filtrar por categoría
-        </label>
+    <!-- RESULTADOS -->
+    <section class="seccion-resultados">
 
-        <select
-          id="filtroCategoria"
-          class="form-select"
-          [value]="categoriaSeleccionada"
-          (change)="categoriaSeleccionada = $any($event.target).value"
-        >
+      <div class="encabezado-resultados">
 
-          <option value="">Todas las categorías</option>
+        <div>
+          <h3>Cursos disponibles</h3>
+          <p>Selecciona un curso para consultar su información.</p>
+        </div>
 
-          @for (categoria of categorias; track categoria) {
-            <option [value]="categoria">
-              {{ categoria }}
-            </option>
+        <div class="contador-cursos">
+          <strong>{{ cursosFiltrados.length }}</strong>
+          <span>
+            {{ cursosFiltrados.length === 1 ? 'curso encontrado' : 'cursos encontrados' }}
+          </span>
+        </div>
+
+      </div>
+
+      @if (cursosFiltrados.length > 0) {
+
+        <div class="lista-cursos">
+
+          @for (curso of cursosFiltrados; track curso.id) {
+
+            <app-curso-card
+              [curso]="curso"
+              (seleccionar)="seleccionarCurso($event)" />
+
           }
 
-        </select>
+        </div>
+
+      } @else {
+
+        <div class="estado-vacio estado-sin-resultados">
+
+          <div class="icono-estado">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m16 16 4 4" />
+              <path d="M8 11h6" />
+            </svg>
+          </div>
+
+          <h3>No encontramos cursos</h3>
+
+          <p>
+            No hay cursos que coincidan con los criterios de búsqueda seleccionados.
+          </p>
+
+          <span>Prueba con otro nombre o categoría.</span>
+
+        </div>
+
+      }
+
+    </section>
+
+  }
+
+  <!-- VENTANA EMERGENTE DE INFORMACIÓN DEL CURSO -->
+  @if (cursoSeleccionado) {
+
+    <div
+      class="modal-seleccion-overlay"
+      (click)="cerrarModal()">
+
+      <div
+        class="modal-seleccion"
+        (click)="$event.stopPropagation()">
+
+        <div class="modal-icono-exito">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m5 12 4 4L19 6" />
+          </svg>
+        </div>
+
+        <span class="texto-confirmacion">
+          {{ cursoLleno ? 'CUPO COMPLETO' : 'CURSO DISPONIBLE' }}
+        </span>
+
+        <h3>{{ cursoSeleccionado.nombre }}</h3>
+
+        <p class="modal-descripcion">
+          Consulta la información y disponibilidad actual de este curso.
+        </p>
+
+        <div class="datos-curso-modal">
+
+          <div class="dato-modal">
+            <span class="dato-etiqueta">Categoría</span>
+            <strong>{{ cursoSeleccionado.categoria }}</strong>
+          </div>
+
+          <div class="dato-modal">
+            <span class="dato-etiqueta">Capacidad total</span>
+            <strong>{{ cursoSeleccionado.capacidad }} estudiantes</strong>
+          </div>
+
+          <div class="dato-modal">
+            <span class="dato-etiqueta">Inscripciones activas</span>
+            <strong>{{ inscripcionesActivas }}</strong>
+          </div>
+
+          <div class="dato-modal dato-cupos">
+            <span class="dato-etiqueta">Cupos disponibles</span>
+
+            <strong [class.sin-cupos]="cursoLleno">
+              {{ cuposDisponibles }}
+              {{ cuposDisponibles === 1 ? 'cupo' : 'cupos' }}
+            </strong>
+          </div>
+
+        </div>
+
+        @if (cursoLleno) {
+
+          <div class="mensaje-curso-lleno">
+            Este curso ya alcanzó su capacidad máxima de estudiantes.
+          </div>
+
+        } @else {
+
+          <div class="mensaje-curso-disponible">
+            Actualmente hay espacios disponibles para este curso.
+          </div>
+
+        }
+
+        <button
+          type="button"
+          class="btn-cerrar-modal"
+          (click)="cerrarModal()">
+
+          Entendido
+
+        </button>
 
       </div>
 
     </div>
-
-    <p class="text-muted">
-      Cursos encontrados: {{ cursosFiltrados.length }}
-    </p>
-
-    <!-- RESULTADOS -->
-    <!-- RESULTADOS -->
-@if (cursosFiltrados.length > 0) {
-
-  <div class="lista-cursos">
-
-    @for (curso of cursosFiltrados; track curso.id) {
-
-      <app-curso-card
-        [curso]="curso"
-        (seleccionar)="seleccionarCurso($event)"
-      />
-
-    }
-
-  </div>
-
-  @if (cursoSeleccionado) {
-    <div class="alert alert-success mt-4">
-
-      <h4>Curso seleccionado</h4>
-
-      <p>
-        Has seleccionado:
-        <strong>{{ cursoSeleccionado.nombre }}</strong>
-      </p>
-
-      <p>
-        Categoría: {{ cursoSeleccionado.categoria }}
-      </p>
-
-    </div>
-  }
-
-} @else {
-
-  <div class="alert alert-warning">
-    No se encontraron cursos con los criterios seleccionados.
-  </div>
-
-}
 
   }
 

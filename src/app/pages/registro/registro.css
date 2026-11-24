@@ -1,25 +1,137 @@
 
+/* =========================================
+   REGISTRO DE INSCRIPCIÓN - UI / UX
+========================================= */
+
 .contenedor-registro {
-  max-width: 650px;
-  margin: 30px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  max-width: 720px;
+  margin: 15px auto;
+  padding: 35px 40px;
+
+  background: #ffffff;
+  border: 1px solid #e2eae4;
+  border-radius: 18px;
+
+  box-shadow: 0 5px 22px rgba(31, 75, 47, 0.06);
 }
 
-.contenedor-registro h2 {
-  color: #1e293b;
-  font-size: 26px;
-  margin-top: 0;
-  margin-bottom: 10px;
+/* ENCABEZADO */
+
+.encabezado-registro {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 27px;
+}
+
+.icono-registro {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e8f5ed;
+  color: #198754;
+
+  border-radius: 16px;
+}
+
+.icono-registro svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.titulo-registro {
+  min-width: 0;
+}
+
+.etiqueta-registro {
+  display: block;
+  color: #198754;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  margin-bottom: 5px;
+}
+
+.encabezado-registro h2 {
+  color: #26352c;
+  font-size: 25px;
+  font-weight: 750;
+  margin: 0 0 6px;
 }
 
 .descripcion {
-  color: #64748b;
-  margin-bottom: 25px;
+  color: #718078;
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
 }
+
+/* SEPARADORES */
+
+.separador-registro,
+.separador-formulario {
+  height: 1px;
+  background: #e7eee9;
+}
+
+.separador-registro {
+  margin-bottom: 28px;
+}
+
+.separador-formulario {
+  margin: 27px 0;
+}
+
+/* TÍTULOS DE SECCIÓN */
+
+.titulo-seccion {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 23px;
+}
+
+.numero-seccion {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #146c43;
+  background: #e8f5ed;
+
+  border-radius: 11px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.titulo-seccion h3 {
+  color: #34443a;
+  font-size: 15px;
+  font-weight: 750;
+  margin: 0 0 4px;
+}
+
+.titulo-seccion p {
+  color: #829087;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* CAMPOS */
 
 .grupo-formulario {
   display: flex;
@@ -28,54 +140,193 @@
 }
 
 .grupo-formulario label {
-  color: #1e293b;
-  font-weight: bold;
-  margin-bottom: 8px;
+  color: #34443a;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 9px;
 }
 
 .grupo-formulario input,
 .grupo-formulario select {
-  padding: 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  font-size: 14px;
+  width: 100%;
+  min-height: 47px;
+  padding: 11px 14px;
+
+  background: #ffffff;
+  color: #34443a;
+
+  border: 1px solid #dce7df;
+  border-radius: 10px;
+
+  font-size: 13px;
   outline: none;
+
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              background 0.2s ease;
+}
+
+.grupo-formulario input::placeholder {
+  color: #a0aaa3;
+}
+
+.grupo-formulario input:hover,
+.grupo-formulario select:hover {
+  border-color: #b5d4bf;
 }
 
 .grupo-formulario input:focus,
 .grupo-formulario select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+  border-color: #198754;
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.12);
 }
 
-.contenedor-registro button {
+.grupo-formulario small {
+  color: #87938b;
+  font-size: 11px;
+  margin-top: 7px;
+}
+
+/* BOTÓN */
+
+.acciones-registro {
+  margin-top: 28px;
+}
+
+.btn-registrar {
   width: 100%;
-  padding: 13px;
-  background-color: #2563eb;
-  color: white;
+  min-height: 49px;
+  padding: 12px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: #198754;
+  color: #ffffff;
+
   border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: bold;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 700;
+
   cursor: pointer;
+
+  transition: background 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
-.contenedor-registro button:hover {
-  background-color: #1d4ed8;
+.btn-registrar svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
+
+.btn-registrar:hover {
+  background: #146c43;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 13px rgba(25, 135, 84, 0.18);
+}
+
+.btn-registrar:active {
+  transform: translateY(0);
+}
+
+.btn-registrar:focus-visible {
+  outline: 3px solid rgba(25, 135, 84, 0.25);
+  outline-offset: 3px;
+}
+
+.nota-registro {
+  text-align: center;
+  color: #87938b;
+  font-size: 11px;
+  margin: 12px 0 0;
+}
+
+/* MENSAJES */
 
 .mensaje {
-  padding: 12px;
-  border-radius: 6px;
-  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-top: 22px;
+  margin-bottom: 0;
+
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .mensaje.exito {
-  color: #166534;
-  background-color: #dcfce7;
+  color: #146c43;
+  background: #e8f5ed;
+  border: 1px solid #b9dfc5;
 }
 
 .mensaje.error {
   color: #991b1b;
-  background-color: #fee2e2;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .contenedor-registro {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .contenedor-registro {
+    margin: 5px auto;
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+
+  .encabezado-registro {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .icono-registro {
+    width: 47px;
+    height: 47px;
+    min-width: 47px;
+    border-radius: 12px;
+  }
+
+  .icono-registro svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .encabezado-registro h2 {
+    font-size: 20px;
+  }
+
+  .descripcion {
+    font-size: 12px;
+  }
+
+  .titulo-seccion h3 {
+    font-size: 14px;
+  }
+
+  .titulo-seccion p {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-registrar,
+  .grupo-formulario input,
+  .grupo-formulario select {
+    transition: none;
+  }
 }

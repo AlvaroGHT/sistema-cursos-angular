@@ -1,18 +1,253 @@
+
+/* TARJETA PRINCIPAL */
+
 .tarjeta-curso {
-  background: #ffffff;
-  border: 1px solid #dee2e6;
-  border-radius: 10px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+
+  width: 100%;
   height: 100%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  min-height: 310px;
+
+  padding: 23px;
+
+  background: #ffffff;
+  border: 1px solid #e0ebe3;
+  border-radius: 15px;
+
+  box-shadow: 0 4px 14px rgba(20, 108, 67, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
+
+/* EFECTO HOVER */
+
+.tarjeta-curso:hover {
+  transform: translateY(-4px);
+  border-color: #a9d5b8;
+  box-shadow: 0 10px 25px rgba(20, 108, 67, 0.11);
+}
+
+/* CONTENIDO */
+
+.curso-contenido {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ENCABEZADO */
+
+.encabezado-curso {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.icono-curso {
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #198754;
+  background: #eaf6ee;
+  border-radius: 11px;
+}
+
+.icono-curso svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.etiqueta-curso {
+  padding: 6px 9px;
+  color: #198754;
+  background: #edf7f0;
+  border-radius: 20px;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+}
+
+/* TÍTULO */
 
 .tarjeta-curso h3 {
-  color: #0d6efd;
-  font-size: 20px;
-  margin-bottom: 12px;
+  color: #146c43;
+  font-size: 19px;
+  font-weight: 750;
+  line-height: 1.4;
+
+  margin: 0 0 11px;
 }
 
-.tarjeta-curso p {
-  margin-bottom: 10px;
+/* DESCRIPCIÓN */
+
+.tarjeta-curso .curso-descripcion {
+  color: #68786d;
+  font-size: 13px;
+  line-height: 1.7;
+
+  margin: 0 0 20px;
+  overflow-wrap: anywhere;
+}
+
+/* INFORMACIÓN DEL CURSO */
+
+.informacion-curso {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.curso-dato {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 11px;
+  background: #f8fbf9;
+  border: 1px solid #edf2ee;
+  border-radius: 9px;
+}
+
+.icono-dato {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #198754;
+  background: #e8f5ed;
+  border-radius: 8px;
+}
+
+.icono-dato svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.curso-dato div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.dato-etiqueta {
+  color: #849188;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.curso-dato strong {
+  color: #344b3b;
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* BOTÓN */
+
+.btn-seleccionar {
+  width: 100%;
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 11px 16px;
+
+  color: #ffffff;
+  background: #198754;
+  border: 1px solid #198754;
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-seleccionar svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn-seleccionar:hover {
+  background: #146c43;
+  border-color: #146c43;
+  box-shadow: 0 4px 10px rgba(20, 108, 67, 0.17);
+  transform: translateY(-1px);
+}
+
+.btn-seleccionar:focus-visible {
+  outline: 3px solid rgba(25, 135, 84, 0.25);
+  outline-offset: 3px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 576px) {
+
+  .tarjeta-curso {
+    min-height: 285px;
+    padding: 19px;
+    gap: 18px;
+  }
+
+  .tarjeta-curso h3 {
+    font-size: 18px;
+  }
+
+  .tarjeta-curso .curso-descripcion {
+    font-size: 13px;
+  }
+
+  .encabezado-curso {
+    margin-bottom: 15px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .tarjeta-curso,
+  .btn-seleccionar {
+    transition: none;
+  }
+
 }

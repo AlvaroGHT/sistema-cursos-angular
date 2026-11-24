@@ -1,5 +1,7 @@
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Curso } from '../../models/curso.model';
+import { Inscripcion } from '../../models/inscripcion.model';
 import { BaseDatos } from '../../services/base-datos';
 import { CursoCard } from '../../components/curso-card/curso-card';
 
@@ -13,6 +15,8 @@ import { CursoCard } from '../../components/curso-card/curso-card';
 export class Consulta implements OnInit {
 
   cursos: Curso[] = [];
+  inscripciones: Inscripcion[] = [];
+
   mensajeError: string = '';
 
   textoBusqueda: string = '';
@@ -28,15 +32,14 @@ export class Consulta implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.cursos = await this.baseDatos.obtenerCursos();
-
-      console.log('Cursos cargados:', this.cursos);
+      this.inscripciones = await this.baseDatos.obtenerInscripciones();
 
       this.cdr.markForCheck();
 
     } catch (error) {
       this.mensajeError = 'No se pudieron cargar los cursos.';
 
-      console.error('Error al obtener cursos:', error);
+      console.error('Error al obtener información:', error);
 
       this.cdr.markForCheck();
     }
@@ -65,7 +68,39 @@ export class Consulta implements OnInit {
     });
   }
 
+  get inscripcionesActivas(): number {
+    if (!this.cursoSeleccionado) {
+      return 0;
+    }
+
+    return this.inscripciones.filter(inscripcion =>
+      inscripcion.cursoId === this.cursoSeleccionado!.id &&
+      inscripcion.estado === 'activa'
+    ).length;
+  }
+
+  get cuposDisponibles(): number {
+    if (!this.cursoSeleccionado) {
+      return 0;
+    }
+
+    return Math.max(
+      0,
+      this.cursoSeleccionado.capacidad - this.inscripcionesActivas
+    );
+  }
+
+  get cursoLleno(): boolean {
+    return this.cuposDisponibles === 0;
+  }
+
   seleccionarCurso(curso: Curso): void {
     this.cursoSeleccionado = curso;
+    this.cdr.markForCheck();
+  }
+
+  cerrarModal(): void {
+    this.cursoSeleccionado = null;
+    this.cdr.markForCheck();
   }
 }

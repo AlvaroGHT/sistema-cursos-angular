@@ -1,30 +1,81 @@
+
 <div class="tarjeta-curso" appResaltar>
 
-  <!-- Nombre del curso -->
-  <h3>{{ curso.nombre }}</h3>
+  <div class="curso-contenido">
 
-  <!-- Descripción -->
-  <p>{{ curso.descripcion }}</p>
+    <!-- ENCABEZADO -->
+    <div class="encabezado-curso">
 
-  <!-- Categoría -->
-  <p>
-    <strong>Categoría:</strong>
-    {{ curso.categoria }}
-  </p>
+      <div class="icono-curso">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/>
+          <path d="M4 5.5v13A2.5 2.5 0 0 1 6.5 16H20"/>
+          <path d="M8 7h8M8 11h6"/>
+        </svg>
+      </div>
 
-  <!-- Capacidad -->
-  <p>
-    <strong>Capacidad:</strong>
-    {{ curso.capacidad | pluralizar:'estudiante':'estudiantes' }}
-  </p>
+      <span class="etiqueta-curso">CURSO DISPONIBLE</span>
 
-  <!-- Botón para seleccionar -->
+    </div>
+
+    <!-- NOMBRE -->
+    <h3>{{ curso.nombre }}</h3>
+
+    <!-- DESCRIPCIÓN -->
+    <p class="curso-descripcion">
+      {{ curso.descripcion }}
+    </p>
+
+    <!-- INFORMACIÓN -->
+    <div class="informacion-curso">
+
+      <div class="curso-dato">
+        <span class="icono-dato">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 5h16v14H4z"/>
+            <path d="M8 9h8M8 13h5"/>
+          </svg>
+        </span>
+
+        <div>
+          <span class="dato-etiqueta">Categoría</span>
+          <strong>{{ curso.categoria }}</strong>
+        </div>
+      </div>
+
+      <div class="curso-dato">
+        <span class="icono-dato">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="9" cy="8" r="3"/>
+            <path d="M3 20v-2a6 6 0 0 1 12 0v2z"/>
+            <path d="M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.5V20h-4"/>
+          </svg>
+        </span>
+
+        <div>
+          <span class="dato-etiqueta">Capacidad</span>
+          <strong>
+            {{ curso.capacidad | pluralizar:'estudiante':'estudiantes' }}
+          </strong>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTÓN -->
   <button
     type="button"
-    class="btn btn-primary"
+    class="btn-seleccionar"
     (click)="seleccionar.emit(curso)"
   >
     Seleccionar curso
+
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 12h14"/>
+      <path d="m13 6 6 6-6 6"/>
+    </svg>
   </button>
 
 </div>

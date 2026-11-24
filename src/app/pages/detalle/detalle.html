@@ -1,93 +1,118 @@
 
 <div class="contenedor-detalle">
 
-  <h2>Detalle de inscripción</h2>
+  <!-- ENCABEZADO -->
+  <div class="encabezado-pagina">
 
-  <p class="descripcion">
-    Consulta toda la información del estudiante y su inscripción.
-  </p>
+    <div class="icono-detalle">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4h16v16H4z"/>
+        <path d="M8 8h8M8 12h8M8 16h5"/>
+      </svg>
+    </div>
+
+    <div>
+      <span class="etiqueta-detalle">GESTIÓN ACADÉMICA</span>
+      <h2>Detalle de inscripción</h2>
+      <p class="descripcion">
+        Consulta toda la información del estudiante y su inscripción.
+      </p>
+    </div>
+
+  </div>
 
   @if (cargando) {
 
     <div class="mensaje-cargando">
-      Cargando información de la inscripción...
+      <div class="indicador-carga"></div>
+      <span>Cargando información de la inscripción...</span>
     </div>
 
   } @else if (inscripcion) {
 
     <div class="tarjeta-detalle">
 
+      <!-- INFORMACIÓN DEL ESTUDIANTE -->
       <div class="encabezado-detalle">
 
-        <h3>Información del estudiante</h3>
+        <div>
+          <span class="etiqueta-seccion">INFORMACIÓN PERSONAL</span>
+          <h3>Información del estudiante</h3>
+        </div>
 
         <span
           class="estado"
           [class.activa]="inscripcion.estado === 'activa'"
           [class.retirada]="inscripcion.estado === 'retirada'"
         >
-          {{ inscripcion.estado }}
+          <span class="punto-estado"></span>
+          {{ inscripcion.estado | titlecase }}
         </span>
 
       </div>
 
       <div class="seccion-datos">
 
-        <p>
-          <strong>Nombre:</strong>
-          {{ inscripcion.estudiante.nombre }}
-        </p>
+        <div class="dato-detalle">
+          <span class="etiqueta-dato">Nombre</span>
+          <strong>{{ inscripcion.estudiante.nombre }}</strong>
+        </div>
 
-        <p>
-          <strong>Apellido:</strong>
-          {{ inscripcion.estudiante.apellido }}
-        </p>
+        <div class="dato-detalle">
+          <span class="etiqueta-dato">Apellido</span>
+          <strong>{{ inscripcion.estudiante.apellido }}</strong>
+        </div>
 
-        <p>
-          <strong>Correo electrónico:</strong>
-          {{ inscripcion.estudiante.correo }}
-        </p>
+        <div class="dato-detalle dato-completo">
+          <span class="etiqueta-dato">Correo electrónico</span>
+          <strong>{{ inscripcion.estudiante.correo }}</strong>
+        </div>
 
       </div>
 
-      <hr>
+      <div class="separador"></div>
 
-      <h3>Información de la inscripción</h3>
+      <!-- INFORMACIÓN DE LA INSCRIPCIÓN -->
+      <div class="titulo-informacion">
+        <span class="etiqueta-seccion">DATOS DEL REGISTRO</span>
+        <h3>Información de la inscripción</h3>
+      </div>
 
       <div class="seccion-datos">
 
-        <p>
-          <strong>ID de inscripción:</strong>
-          {{ inscripcion.id }}
-        </p>
+        <div class="dato-detalle">
+          <span class="etiqueta-dato">ID de inscripción</span>
+          <strong>#{{ inscripcion.id }}</strong>
+        </div>
 
-        <p>
-          <strong>Curso:</strong>
-          {{ curso ? curso.nombre : 'Curso no encontrado' }}
-        </p>
+        <div class="dato-detalle">
+          <span class="etiqueta-dato">Curso</span>
+          <strong>{{ curso ? curso.nombre : 'Curso no encontrado' }}</strong>
+        </div>
 
-        <p>
-          <strong>Descripción:</strong>
-          {{ curso ? curso.descripcion : 'No disponible' }}
-        </p>
+        <div class="dato-detalle dato-completo">
+          <span class="etiqueta-dato">Descripción</span>
+          <strong>{{ curso ? curso.descripcion : 'No disponible' }}</strong>
+        </div>
 
-        <p>
-          <strong>Categoría:</strong>
-          {{ curso ? curso.categoria : 'No disponible' }}
-        </p>
+        <div class="dato-detalle">
+          <span class="etiqueta-dato">Categoría</span>
+          <strong>{{ curso ? curso.categoria : 'No disponible' }}</strong>
+        </div>
 
-        <p>
-          <strong>Fecha de inscripción:</strong>
-          {{ formatearFecha(inscripcion.fecha) }}
-        </p>
+        <div class="dato-detalle">
+          <span class="etiqueta-dato">Fecha de inscripción</span>
+          <strong>{{ formatearFecha(inscripcion.fecha) }}</strong>
+        </div>
 
-        <p>
-          <strong>Estado:</strong>
-          {{ inscripcion.estado }}
-        </p>
+        <div class="dato-detalle">
+          <span class="etiqueta-dato">Estado de inscripción</span>
+          <strong>{{ inscripcion.estado | titlecase }}</strong>
+        </div>
 
       </div>
 
+      <!-- MENSAJES -->
       @if (mensaje) {
 
         <div
@@ -100,9 +125,14 @@
 
       }
 
+      <!-- ACCIONES -->
       <div class="acciones-detalle">
 
         <a routerLink="/historial" class="btn-volver">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m15 18-6-6 6-6"/>
+            <path d="M9 12h12"/>
+          </svg>
           Volver al historial
         </a>
 
@@ -135,7 +165,11 @@
       {{ mensaje }}
     </div>
 
-    <a routerLink="/historial" class="btn-volver">
+    <a routerLink="/historial" class="btn-volver btn-volver-error">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m15 18-6-6 6-6"/>
+        <path d="M9 12h12"/>
+      </svg>
       Volver al historial
     </a>
 

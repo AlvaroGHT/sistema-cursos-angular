@@ -1,58 +1,134 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-  <div class="container">
 
-    <a class="navbar-brand fw-bold" routerLink="/cursos">
-      Sistema de Cursos
-    </a>
+<div class="aplicacion">
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#menuPrincipal"
-      aria-controls="menuPrincipal"
-      aria-expanded="false"
-      aria-label="Abrir menú">
+  <header class="encabezado-principal">
 
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-verde">
 
-    <div class="collapse navbar-collapse" id="menuPrincipal">
-      <ul class="navbar-nav ms-auto">
+      <div class="container">
 
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/cursos"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">
-            Consultar cursos
-          </a>
-        </li>
+        <!-- IDENTIDAD DEL SISTEMA -->
+        <a class="navbar-brand" routerLink="/cursos">
 
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/registro"
-            routerLinkActive="active">
-            Registrar inscripción
-          </a>
-        </li>
+          <span class="marca-icono">SC</span>
 
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/historial"
-            routerLinkActive="active">
-            Historial
-          </a>
-        </li>
+          <span class="marca-texto">
+            <strong>Sistema de Cursos</strong>
+            <small>Plataforma educativa</small>
+          </span>
 
-      </ul>
+        </a>
+
+        <!-- BOTÓN PARA CELULARES -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menuPrincipal"
+          aria-controls="menuPrincipal"
+          aria-expanded="false"
+          aria-label="Abrir menú de navegación">
+
+          <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- NAVEGACIÓN -->
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+
+            <li class="nav-item">
+
+              <a
+                class="nav-link"
+                routerLink="/cursos"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H20v16H5.5A2.5 2.5 0 0 1 3 16.5z"/>
+                  <path d="M3 16.5A2.5 2.5 0 0 1 5.5 14H20"/>
+                  <path d="M8 7h8"/>
+                </svg>
+
+                <span>Consultar cursos</span>
+
+              </a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a
+                class="nav-link"
+                routerLink="/registro"
+                routerLinkActive="active">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="9" cy="8" r="4"/>
+                  <path d="M3 20v-1a6 6 0 0 1 12 0v1"/>
+                  <path d="M19 8v6"/>
+                  <path d="M16 11h6"/>
+                </svg>
+
+                <span>Registrar inscripción</span>
+
+              </a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a
+                class="nav-link"
+                routerLink="/historial"
+                routerLinkActive="active">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/>
+                  <path d="M3 3v5h5"/>
+                  <path d="M12 7v5l3 2"/>
+                </svg>
+
+                <span>Historial</span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- CONTENIDO DE LAS PÁGINAS -->
+  <main class="contenido-principal">
+
+    <div class="container">
+
+      <router-outlet></router-outlet>
+
     </div>
-  </div>
-</nav>
 
-<main class="container py-4">
-  <router-outlet></router-outlet>
-</main>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie-pagina">
+
+    <div class="container">
+      <p>
+        Sistema de Cursos
+        <span>·</span>
+        Plataforma de gestión de inscripciones
+      </p>
+    </div>
+
+  </footer>
+
+</div>
