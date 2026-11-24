@@ -1,0 +1,30 @@
+<div class="tarjeta-curso" appResaltar>
+
+  <!-- Nombre del curso -->
+  <h3>{{ curso.nombre }}</h3>
+
+  <!-- Descripción -->
+  <p>{{ curso.descripcion }}</p>
+
+  <!-- Categoría -->
+  <p>
+    <strong>Categoría:</strong>
+    {{ curso.categoria }}
+  </p>
+
+  <!-- Capacidad -->
+  <p>
+    <strong>Capacidad:</strong>
+    {{ curso.capacidad | pluralizar:'estudiante':'estudiantes' }}
+  </p>
+
+  <!-- Botón para seleccionar -->
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="seleccionar.emit(curso)"
+  >
+    Seleccionar curso
+  </button>
+
+</div>

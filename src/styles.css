@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+/* Configuración general */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Contenedor principal */
+.container-fluid {
+  width: 100%;
+}
+
+/* Tarjetas de cursos */
+.lista-cursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Animación de tarjetas */
+.tarjeta-curso {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 576px) {
+  .lista-cursos {
+    grid-template-columns: 1fr;
+  }
+}

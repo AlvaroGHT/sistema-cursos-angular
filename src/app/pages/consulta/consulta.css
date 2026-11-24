@@ -1,0 +1,86 @@
+
+.contenedor-cursos {
+  padding: 30px;
+}
+
+.contenedor-cursos h2 {
+  color: #1e293b;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.descripcion {
+  color: #64748b;
+  margin-bottom: 25px;
+}
+
+.form-label {
+  color: #334155;
+  font-weight: 600;
+}
+
+.form-control,
+.form-select {
+  border-radius: 7px;
+  padding: 10px 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+}
+
+.lista-cursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-curso {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta-curso:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.10);
+}
+
+.tarjeta-curso h3 {
+  color: #2563eb;
+  font-size: 19px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.tarjeta-curso p {
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.tarjeta-curso strong {
+  color: #1e293b;
+}
+
+.mensaje-error {
+  color: #dc2626;
+  background-color: #fee2e2;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .contenedor-cursos {
+    padding: 15px;
+  }
+
+  .lista-cursos {
+    grid-template-columns: 1fr;
+  }
+}

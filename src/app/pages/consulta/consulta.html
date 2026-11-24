@@ -1,0 +1,119 @@
+
+<div class="contenedor-cursos container-fluid">
+
+  <h2>Consultar cursos</h2>
+
+  <p class="descripcion">
+    Explora los cursos disponibles y consulta sus detalles.
+  </p>
+
+  @if (mensajeError) {
+
+    <div class="alert alert-danger">
+      {{ mensajeError }}
+    </div>
+
+  } @else if (cursos.length === 0) {
+
+    <div class="alert alert-info">
+      No hay cursos disponibles.
+    </div>
+
+  } @else {
+
+    <!-- FILTROS -->
+    <div class="row g-3 mb-4">
+
+      <div class="col-md-6">
+
+        <label for="buscarCurso" class="form-label">
+          Buscar curso
+        </label>
+
+        <input
+          id="buscarCurso"
+          type="text"
+          class="form-control"
+          placeholder="Escribe el nombre o descripción..."
+          [value]="textoBusqueda"
+          (input)="textoBusqueda = $any($event.target).value"
+        >
+
+      </div>
+
+      <div class="col-md-6">
+
+        <label for="filtroCategoria" class="form-label">
+          Filtrar por categoría
+        </label>
+
+        <select
+          id="filtroCategoria"
+          class="form-select"
+          [value]="categoriaSeleccionada"
+          (change)="categoriaSeleccionada = $any($event.target).value"
+        >
+
+          <option value="">Todas las categorías</option>
+
+          @for (categoria of categorias; track categoria) {
+            <option [value]="categoria">
+              {{ categoria }}
+            </option>
+          }
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <p class="text-muted">
+      Cursos encontrados: {{ cursosFiltrados.length }}
+    </p>
+
+    <!-- RESULTADOS -->
+    <!-- RESULTADOS -->
+@if (cursosFiltrados.length > 0) {
+
+  <div class="lista-cursos">
+
+    @for (curso of cursosFiltrados; track curso.id) {
+
+      <app-curso-card
+        [curso]="curso"
+        (seleccionar)="seleccionarCurso($event)"
+      />
+
+    }
+
+  </div>
+
+  @if (cursoSeleccionado) {
+    <div class="alert alert-success mt-4">
+
+      <h4>Curso seleccionado</h4>
+
+      <p>
+        Has seleccionado:
+        <strong>{{ cursoSeleccionado.nombre }}</strong>
+      </p>
+
+      <p>
+        Categoría: {{ cursoSeleccionado.categoria }}
+      </p>
+
+    </div>
+  }
+
+} @else {
+
+  <div class="alert alert-warning">
+    No se encontraron cursos con los criterios seleccionados.
+  </div>
+
+}
+
+  }
+
+</div>

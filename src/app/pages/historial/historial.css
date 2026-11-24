@@ -1,0 +1,204 @@
+
+.contenedor-historial {
+  padding: 30px;
+}
+
+.contenedor-historial h2 {
+  color: #1e293b;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.descripcion {
+  color: #64748b;
+  margin-bottom: 25px;
+}
+
+/* FILTROS */
+
+.filtros-historial {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  padding: 18px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.grupo-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 280px;
+  max-width: 100%;
+}
+
+.grupo-filtro label {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.grupo-filtro select {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+.grupo-filtro select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.contador-inscripciones {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.contador-inscripciones strong {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+/* TARJETAS */
+
+.lista-inscripciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-inscripcion {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta-inscripcion:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.10);
+}
+
+.encabezado-tarjeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.encabezado-tarjeta h3 {
+  color: #2563eb;
+  font-size: 19px;
+  margin: 0;
+}
+
+.tarjeta-inscripcion p {
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.tarjeta-inscripcion strong {
+  color: #1e293b;
+}
+
+/* ESTADOS */
+
+.estado {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.estado.activa {
+  color: #166534;
+  background-color: #dcfce7;
+}
+
+.estado.retirada {
+  color: #991b1b;
+  background-color: #fee2e2;
+}
+
+/* BOTÓN DETALLE */
+
+.btn-detalle {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 11px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #2563eb;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-detalle:hover {
+  color: #ffffff;
+  background-color: #1d4ed8;
+}
+
+/* MENSAJES */
+
+.sin-inscripciones {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+.sin-inscripciones h3 {
+  color: #1e293b;
+}
+
+.sin-inscripciones p {
+  color: #64748b;
+}
+
+.mensaje-error {
+  color: #991b1b;
+  background-color: #fee2e2;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 576px) {
+
+  .contenedor-historial {
+    padding: 15px;
+  }
+
+  .lista-inscripciones {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros-historial {
+    align-items: stretch;
+  }
+
+  .grupo-filtro {
+    width: 100%;
+  }
+
+}

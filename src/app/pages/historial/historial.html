@@ -1,0 +1,134 @@
+
+<div class="contenedor-historial">
+
+  <h2>Historial de inscripciones</h2>
+
+  <p class="descripcion">
+    Consulta todas las inscripciones registradas en el sistema.
+  </p>
+
+  @if (mensajeError) {
+
+    <div class="mensaje-error">
+      {{ mensajeError }}
+    </div>
+
+  } @else if (inscripciones.length > 0) {
+
+    <div class="filtros-historial">
+
+      <div class="grupo-filtro">
+
+        <label for="filtroEstado">
+          Filtrar por estado:
+        </label>
+
+        <select
+          id="filtroEstado"
+          class="form-select"
+          [value]="filtroEstado"
+          (change)="filtroEstado = $any($event.target).value"
+        >
+          <option value="todas">Todas las inscripciones</option>
+          <option value="activa">Activas</option>
+          <option value="retirada">Retiradas</option>
+        </select>
+
+      </div>
+
+      <div class="contador-inscripciones">
+        Inscripciones encontradas:
+        <strong>{{ inscripcionesFiltradas.length }}</strong>
+      </div>
+
+    </div>
+
+    @if (inscripcionesFiltradas.length > 0) {
+
+      <div class="lista-inscripciones">
+
+        @for (inscripcion of inscripcionesFiltradas; track inscripcion.id) {
+
+          <div class="tarjeta-inscripcion">
+
+            <div class="encabezado-tarjeta">
+
+              <h3>
+                {{ inscripcion.estudiante.nombre | titlecase }}
+                {{ inscripcion.estudiante.apellido | titlecase }}
+              </h3>
+
+              <span
+                class="estado"
+                [ngClass]="{
+                  'activa': inscripcion.estado === 'activa',
+                  'retirada': inscripcion.estado === 'retirada'
+                }"
+              >
+                {{ inscripcion.estado | titlecase }}
+              </span>
+
+            </div>
+
+            <p>
+              <strong>ID de inscripción:</strong>
+              {{ inscripcion.id }}
+            </p>
+
+            <p>
+              <strong>Correo electrónico:</strong>
+              {{ inscripcion.estudiante.correo }}
+            </p>
+
+            <p>
+              <strong>Curso:</strong>
+              {{ obtenerNombreCurso(inscripcion.cursoId) }}
+            </p>
+
+            <p>
+              <strong>Fecha de inscripción:</strong>
+              {{ inscripcion.fecha | date:'dd/MM/yyyy, h:mm a' }}
+            </p>
+
+            <a
+              [routerLink]="['/detalle', inscripcion.id]"
+              class="btn-detalle"
+            >
+              Consultar detalle
+            </a>
+
+          </div>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <div class="sin-inscripciones">
+
+        <h3>No hay resultados</h3>
+
+        <p>
+          No existen inscripciones con el estado seleccionado.
+        </p>
+
+      </div>
+
+    }
+
+  } @else {
+
+    <div class="sin-inscripciones">
+
+      <h3>No hay inscripciones registradas</h3>
+
+      <p>
+        Cuando registres estudiantes, sus inscripciones aparecerán aquí.
+      </p>
+
+    </div>
+
+  }
+
+</div>

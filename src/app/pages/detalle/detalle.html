@@ -1,0 +1,144 @@
+
+<div class="contenedor-detalle">
+
+  <h2>Detalle de inscripción</h2>
+
+  <p class="descripcion">
+    Consulta toda la información del estudiante y su inscripción.
+  </p>
+
+  @if (cargando) {
+
+    <div class="mensaje-cargando">
+      Cargando información de la inscripción...
+    </div>
+
+  } @else if (inscripcion) {
+
+    <div class="tarjeta-detalle">
+
+      <div class="encabezado-detalle">
+
+        <h3>Información del estudiante</h3>
+
+        <span
+          class="estado"
+          [class.activa]="inscripcion.estado === 'activa'"
+          [class.retirada]="inscripcion.estado === 'retirada'"
+        >
+          {{ inscripcion.estado }}
+        </span>
+
+      </div>
+
+      <div class="seccion-datos">
+
+        <p>
+          <strong>Nombre:</strong>
+          {{ inscripcion.estudiante.nombre }}
+        </p>
+
+        <p>
+          <strong>Apellido:</strong>
+          {{ inscripcion.estudiante.apellido }}
+        </p>
+
+        <p>
+          <strong>Correo electrónico:</strong>
+          {{ inscripcion.estudiante.correo }}
+        </p>
+
+      </div>
+
+      <hr>
+
+      <h3>Información de la inscripción</h3>
+
+      <div class="seccion-datos">
+
+        <p>
+          <strong>ID de inscripción:</strong>
+          {{ inscripcion.id }}
+        </p>
+
+        <p>
+          <strong>Curso:</strong>
+          {{ curso ? curso.nombre : 'Curso no encontrado' }}
+        </p>
+
+        <p>
+          <strong>Descripción:</strong>
+          {{ curso ? curso.descripcion : 'No disponible' }}
+        </p>
+
+        <p>
+          <strong>Categoría:</strong>
+          {{ curso ? curso.categoria : 'No disponible' }}
+        </p>
+
+        <p>
+          <strong>Fecha de inscripción:</strong>
+          {{ formatearFecha(inscripcion.fecha) }}
+        </p>
+
+        <p>
+          <strong>Estado:</strong>
+          {{ inscripcion.estado }}
+        </p>
+
+      </div>
+
+      @if (mensaje) {
+
+        <div
+          class="mensaje"
+          [class.exito]="tipoMensaje === 'exito'"
+          [class.error]="tipoMensaje === 'error'"
+        >
+          {{ mensaje }}
+        </div>
+
+      }
+
+      <div class="acciones-detalle">
+
+        <a routerLink="/historial" class="btn-volver">
+          Volver al historial
+        </a>
+
+        @if (inscripcion.estado === 'activa') {
+
+          <button
+            type="button"
+            class="btn-retirar"
+            [disabled]="procesando"
+            (click)="retirar()"
+          >
+            {{ procesando ? 'Procesando...' : 'Retirar inscripción' }}
+          </button>
+
+        } @else {
+
+          <button type="button" class="btn-retirado" disabled>
+            Inscripción retirada
+          </button>
+
+        }
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="mensaje error">
+      {{ mensaje }}
+    </div>
+
+    <a routerLink="/historial" class="btn-volver">
+      Volver al historial
+    </a>
+
+  }
+
+</div>

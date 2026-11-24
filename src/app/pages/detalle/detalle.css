@@ -1,0 +1,162 @@
+
+.contenedor-detalle {
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 25px;
+}
+
+.contenedor-detalle h2 {
+  color: #1e293b;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.descripcion {
+  color: #64748b;
+  margin-bottom: 25px;
+}
+
+.tarjeta-detalle {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.encabezado-detalle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.encabezado-detalle h3,
+.tarjeta-detalle h3 {
+  color: #2563eb;
+  font-size: 19px;
+  margin-bottom: 18px;
+}
+
+.seccion-datos p {
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.seccion-datos strong {
+  color: #1e293b;
+}
+
+.estado {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.estado.activa {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.estado.retirada {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.tarjeta-detalle hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 22px 0;
+}
+
+.acciones-detalle {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.btn-volver,
+.btn-retirar,
+.btn-retirado {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-volver {
+  color: #ffffff;
+  background: #2563eb;
+}
+
+.btn-volver:hover {
+  background: #1d4ed8;
+}
+
+.btn-retirar {
+  color: #ffffff;
+  background: #dc2626;
+  cursor: pointer;
+}
+
+.btn-retirar:hover {
+  background: #b91c1c;
+}
+
+.btn-retirar:disabled,
+.btn-retirado {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-retirado {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.mensaje {
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 6px;
+}
+
+.mensaje.exito {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.mensaje.error {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.mensaje-cargando {
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 8px;
+  color: #64748b;
+}
+
+@media (max-width: 576px) {
+  .contenedor-detalle {
+    padding: 15px;
+  }
+
+  .tarjeta-detalle {
+    padding: 18px;
+  }
+
+  .acciones-detalle {
+    flex-direction: column;
+  }
+}
