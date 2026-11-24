@@ -1,59 +1,112 @@
-# SistemaCursosAngular
+# Estudiante
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.7.
+Alvaro Guillermo Huanca Taco
 
-## Development server
+# Sistema de Gestión de Cursos
 
-To start a local development server, run:
+Aplicación web desarrollada con **Angular 22**, **TypeScript**, **Bootstrap 5.3.9** e **IndexedDB**, que permite gestionar la consulta de cursos y las inscripciones de estudiantes.
+
+## Descripción del proyecto
+
+El sistema permite consultar los cursos disponibles, registrar estudiantes, revisar el historial de inscripciones y consultar los detalles de cada registro. También permite retirar inscripciones y actualizar su estado.
+
+La información se almacena en el navegador mediante IndexedDB, por lo que permanece guardada aunque se cierre o actualice la página.
+
+## Tecnologías utilizadas
+
+- Angular 22.2.7
+- TypeScript
+- HTML5 y CSS3
+- Bootstrap 5.3.9
+- IndexedDB
+- Git y GitHub
+
+## Funcionalidades principales
+
+### 1. Consulta de cursos
+- Visualización de los cursos disponibles.
+- Búsqueda por nombre o descripción.
+- Filtro por categoría.
+
+### 2. Registro de estudiantes
+- Formulario para registrar estudiantes en los cursos.
+- Validación de campos obligatorios.
+- Validación del correo electrónico.
+- Prevención de inscripciones duplicadas activas en el mismo curso.
+- Control de capacidad de los cursos.
+
+### 3. Historial de inscripciones
+- Visualización de las inscripciones registradas.
+- Consulta de fechas y estados.
+- Filtro por estado de inscripción.
+- Acceso al detalle de cada inscripción.
+
+### 4. Detalle de inscripción
+- Consulta de los datos del estudiante y del curso.
+- Visualización de la información de la inscripción.
+- Opción para retirar una inscripción.
+- Actualización del estado después de retirar una inscripción.
+- Mensaje cuando no existe una inscripción solicitada.
+
+## Almacenamiento de datos
+
+El sistema utiliza **IndexedDB** para guardar los cursos y las inscripciones directamente en el navegador.
+
+Los datos permanecen disponibles después de actualizar o cerrar el navegador. Sin embargo, no se sincronizan automáticamente entre diferentes dispositivos o navegadores.
+
+## Instalación y ejecución
+
+### Requisitos
+- Node.js
+- npm
+- Angular CLI
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/AlvaroGHT/sistema-cursos-angular.git
+```
+
+### 2. Ingresar a la carpeta
+
+```bash
+cd sistema-cursos-angular
+```
+
+### 3. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 4. Ejecutar el servidor
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 5. Abrir en el navegador
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Compilación del proyecto
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Para generar la versión de producción:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Los archivos compilados se almacenarán en la carpeta `dist/`.
 
-## Running unit tests
+## Autor
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+**Alvaro Guillermo Huanca Taco**
 
-```bash
-ng test
-```
+GitHub: https://github.com/AlvaroGHT
 
-## Running end-to-end tests
+## Repositorio
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+https://github.com/AlvaroGHT/sistema-cursos-angular
