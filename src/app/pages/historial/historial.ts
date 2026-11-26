@@ -24,6 +24,7 @@ export class Historial implements OnInit {
 
   mensajeError: string = '';
   filtroEstado: string = 'todas';
+  busqueda: string = '';
 
   constructor(
     private baseDatos: BaseDatos,
@@ -61,13 +62,27 @@ export class Historial implements OnInit {
 
   get inscripcionesFiltradas(): Inscripcion[] {
 
-    if (this.filtroEstado === 'todas') {
-      return this.inscripciones;
-    }
+    const textoBusqueda = this.busqueda.trim().toLowerCase();
 
-    return this.inscripciones.filter(
-      inscripcion => inscripcion.estado === this.filtroEstado
-    );
+    return this.inscripciones.filter(inscripcion => {
+
+      const coincideEstado =
+        this.filtroEstado === 'todas' ||
+        inscripcion.estado === this.filtroEstado;
+
+      const nombreCompleto =
+        `${inscripcion.estudiante.nombre} ${inscripcion.estudiante.apellido}`.toLowerCase();
+
+      const correo =
+        inscripcion.estudiante.correo.toLowerCase();
+
+      const coincideBusqueda =
+        nombreCompleto.includes(textoBusqueda) ||
+        correo.includes(textoBusqueda);
+
+      return coincideEstado && coincideBusqueda;
+
+    });
 
   }
 

@@ -36,13 +36,28 @@
       <div class="titulo-filtros">
         <div>
           <h3>Consultar registros</h3>
-          <p>Filtra las inscripciones según su estado.</p>
+          <p>Busca estudiantes y filtra las inscripciones según su estado.</p>
         </div>
 
         <span class="etiqueta-filtro">FILTROS</span>
       </div>
 
       <div class="contenido-filtros">
+
+        <div class="grupo-filtro">
+
+          <label for="buscarEstudiante">Buscar estudiante</label>
+
+          <input
+            type="text"
+            id="buscarEstudiante"
+            class="form-control"
+            placeholder="Nombre, apellido o correo..."
+            [value]="busqueda"
+            (input)="busqueda = $any($event.target).value"
+          />
+
+        </div>
 
         <div class="grupo-filtro">
 
@@ -203,7 +218,7 @@
         </div>
 
         <h3>No hay resultados</h3>
-        <p>No existen inscripciones con el estado seleccionado.</p>
+        <p>No existen inscripciones que coincidan con tu búsqueda o estado seleccionado.</p>
 
       </div>
 
